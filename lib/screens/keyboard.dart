@@ -4,7 +4,9 @@ import 'package:calculadora/components/button.dart';
 
 
 class Keyboard extends StatelessWidget {
-  const Keyboard({Key? key}) : super(key: key);
+
+  final void Function(String) cb;
+  Keyboard(this.cb);
 
   @override
   Widget build(BuildContext context) {
@@ -13,32 +15,32 @@ class Keyboard extends StatelessWidget {
       child: Column(
         children: <Widget> [
           ButtonRow( [
-              Button(text: 'AC', big: true),
-              Button(text: '%'),
-              Button(text: '/', color: Button.OPERATION),
+              Button(text: 'AC', big: true, cb: cb,color: Button.DARK,),
+              Button(text: '%', cb: cb,color: Button.DARK,),
+              Button(text: '/', color: Button.OPERATION, cb: cb),
             ] ),
             ButtonRow( [
-              Button(text: '7'),
-              Button(text: '8'),
-              Button(text: '9'),
-              Button(text: 'X', color: Button.OPERATION),
+              Button(text: '7', cb: cb),
+              Button(text: '8', cb: cb),
+              Button(text: '9', cb: cb),
+              Button(text: 'X', color: Button.OPERATION, cb: cb),
             ] ),
             ButtonRow( [
-              Button(text: '4'),
-              Button(text: '5'),
-              Button(text: '6'),
-              Button(text: '-', color: Button.OPERATION),
+              Button(text: '4', cb: cb),
+              Button(text: '5', cb: cb),
+              Button(text: '6', cb: cb),
+              Button(text: '-', color: Button.OPERATION, cb: cb),
             ] ),
             ButtonRow( [
-              Button(text: '1'),
-              Button(text: '2'),
-              Button(text: '3'),
-              Button(text: '+', color: Button.OPERATION),
+              Button(text: '1', cb: cb),
+              Button(text: '2', cb: cb),
+              Button(text: '3', cb: cb),
+              Button(text: '+', color: Button.OPERATION, cb: cb),
             ] ),
             ButtonRow( [
-              Button(text: '0', big: true),
-              Button(text: '.'),
-              Button(text: '=', color: Button.OPERATION),
+              Button(text: '0', big: true, cb: cb),
+              Button(text: '.', cb: cb),
+              Button(text: '=', color: Button.OPERATION, cb: cb),
             ] ),
 
         ],

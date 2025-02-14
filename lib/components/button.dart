@@ -8,12 +8,14 @@ class Button extends StatelessWidget {
   final String text;
   final bool big;
   final Color color;
+  final void Function(String) cb;
 
     Button({
     Key? key,
     required this.text,
     this.big = false,
     this.color = DEFAULT,
+    required this.cb,
     
   }) : super(key: key);
 
@@ -22,7 +24,7 @@ class Button extends StatelessWidget {
     return Expanded(
       flex: big ? 2 : 1,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () => cb(text),
         style: ElevatedButton.styleFrom(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(0), 
