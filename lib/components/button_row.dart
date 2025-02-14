@@ -5,16 +5,16 @@ class ButtonRow extends StatelessWidget {
 
   final List<Button> buttons;
 
-  ButtonRow({
-    Key? key,
-    required this.buttons,
-  }) : super(key: key);
+  ButtonRow(this.buttons);
 
   @override 
 
   Widget build(BuildContext context) {
-    return Row(
-      children: buttons,
+    return Expanded(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: buttons,
+        ),
     );
   }
 

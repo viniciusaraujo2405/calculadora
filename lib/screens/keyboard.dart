@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:calculadora/components/button_row.dart';
+import 'package:calculadora/components/button.dart';
+
 
 class Keyboard extends StatelessWidget {
   const Keyboard({Key? key}) : super(key: key);
@@ -8,31 +11,38 @@ class Keyboard extends StatelessWidget {
     return Container(
       height: 500,
       child: Column(
-        children: [
-          Row(
-            children: [
-              Text('9'),
-              Text('8'),
-              Text('7'),
-            ],
-          ),
-          Row(
-            children: [
-              Text('6'),
-              Text('5'),
-              Text('4'),
+        children: <Widget> [
+          ButtonRow( [
+              Button(text: 'AC', big: true),
+              Button(text: '%'),
+              Button(text: '/'),
+            ] ),
+            ButtonRow( [
+              Button(text: '7'),
+              Button(text: '8'),
+              Button(text: '9'),
+              Button(text: 'X'),
+            ] ),
+            ButtonRow( [
+              Button(text: '4'),
+              Button(text: '5'),
+              Button(text: '6'),
+              Button(text: '-'),
+            ] ),
+            ButtonRow( [
+              Button(text: '1'),
+              Button(text: '2'),
+              Button(text: '3'),
+              Button(text: '+'),
+            ] ),
+            ButtonRow( [
+              Button(text: '0', big: true),
+              Button(text: '.'),
+              Button(text: '='),
+            ] ),
 
-            ],
-          ),
-          Row(
-            children: [
-              Text('3'),
-              Text('2'),
-              Text('1'),
-            ],
-          ),
-          
         ],
+
       ),
     );
   }
