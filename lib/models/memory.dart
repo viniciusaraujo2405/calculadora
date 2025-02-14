@@ -1,6 +1,9 @@
 class Memory {
   String _value = '0';
 
+  final _buffer = [0.0, 0.0];
+  int _bufferIndex = 0;
+
   void applyCommand(String command) {
     if(command  == 'AC') {
       _allClear();
