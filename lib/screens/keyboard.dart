@@ -15,30 +15,30 @@ class Keyboard extends StatelessWidget {
           ButtonRow( [
               Button(text: 'AC', big: true),
               Button(text: '%'),
-              Button(text: '/'),
+              Button(text: '/', color: Button.OPERATION),
             ] ),
             ButtonRow( [
               Button(text: '7'),
               Button(text: '8'),
               Button(text: '9'),
-              Button(text: 'X'),
+              Button(text: 'X', color: Button.OPERATION),
             ] ),
             ButtonRow( [
               Button(text: '4'),
               Button(text: '5'),
               Button(text: '6'),
-              Button(text: '-'),
+              Button(text: '-', color: Button.OPERATION),
             ] ),
             ButtonRow( [
               Button(text: '1'),
               Button(text: '2'),
               Button(text: '3'),
-              Button(text: '+'),
+              Button(text: '+', color: Button.OPERATION),
             ] ),
             ButtonRow( [
               Button(text: '0', big: true),
               Button(text: '.'),
-              Button(text: '='),
+              Button(text: '=', color: Button.OPERATION),
             ] ),
 
         ],

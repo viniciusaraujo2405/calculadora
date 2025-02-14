@@ -23,27 +23,25 @@ class Button extends StatelessWidget {
       flex: big ? 2 : 1,
       child: ElevatedButton(
         onPressed: () {},
-        child: Text(
-          text,
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 32,
-            fontWeight: FontWeight.w200,
-
-          ),
-          ),
-        
-        
-        
         style: ElevatedButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(0),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(0), 
         ),
-        
-        ),
-        
+            backgroundColor: this.color,
       ),
+        child: Text(
+            text,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 32,
+              fontWeight: FontWeight.w200,
+                ),
+           ),
+        
+        ),
+        
+      );
       
-    );
+    
   }
 }
