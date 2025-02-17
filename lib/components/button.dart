@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class Button extends StatelessWidget {
-  static const DARK = Color.fromRGBO(82, 82, 82, 1);
-  static const DEFAULT = Color.fromRGBO(112, 112, 112, 1);
-  static const OPERATION = Color.fromRGBO(250, 158, 13, 1);
+  static const DARK = Color.fromRGBO(26, 26, 26, 1) ;
+  static const DEFAULT = Color.fromRGBO(165, 165, 165, 1.0);
+  static const OPERATION = Color.fromRGBO(255, 149, 0, 1.0);
   
   final String text;
   final bool big;
@@ -14,7 +14,7 @@ class Button extends StatelessWidget {
     Key? key,
     required this.text,
     this.big = false,
-    this.color = DEFAULT,
+    this.color = DARK,
     required this.cb,
     
   }) : super(key: key);
@@ -22,12 +22,13 @@ class Button extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
+      
       flex: big ? 2 : 1,
       child: ElevatedButton(
         onPressed: () => cb(text),
         style: ElevatedButton.styleFrom(
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(0), 
+              borderRadius: BorderRadius.circular(50), 
         ),
             backgroundColor: this.color,
       ),
@@ -35,8 +36,8 @@ class Button extends StatelessWidget {
             text,
             style: TextStyle(
               color: Colors.white,
-              fontSize: 32,
-              fontWeight: FontWeight.w200,
+              fontSize: 40,
+              fontWeight: FontWeight.w300,
                 ),
            ),
         

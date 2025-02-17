@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Memory {
-  static const operations = const ['%', '/', 'x', '-', '+', '=', '^'];	
+  static const operations = const ['%', '/', 'x', '-', '+', '=', '^'];
   final _buffer = [0.0, 0.0];
   int _bufferIndex = 0;
   String? _operation ;

@@ -1,6 +1,7 @@
 import 'package:calculadora/screens/history_screen.dart'; 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import '../components/button.dart';
 import '../models/memory.dart';
 import 'package:calculadora/components/display.dart';
 import 'package:calculadora/components/keyboard.dart';
@@ -29,8 +30,9 @@ class _CalculatorState extends State<Calculator> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
+      home: Scaffold(    
         body: Stack(
+          
           children: [
             Column(
               children: [
@@ -40,35 +42,40 @@ class _CalculatorState extends State<Calculator> {
             ),
             Positioned(
               top: 30,
-              right: 5,
-              child: Row(
-                children: [
-                  ElevatedButton(
-                    onPressed: () {
+              left: 5,
+              child: Container(
+                    color: Colors.black,
+                    child: IconButton(
+                      icon: Icon(
+                        Icons.list,
+                        color: Button.OPERATION,),
+                      onPressed: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(builder: (context) => HistoryScreen()),
                       );
                     },
-                    style: ElevatedButton.styleFrom(
-                      shape: CircleBorder(),
-                      padding: EdgeInsets.all(10),
-                      backgroundColor: Colors.blue,
-                    ),
-                    child: Icon(Icons.history, color: Colors.white),
+                    )
                   ),
-                  SizedBox(width: 10),
-                  ElevatedButton(
-                    onPressed: _logout,
-                    style: ElevatedButton.styleFrom(
-                      shape: CircleBorder(),
-                      padding: EdgeInsets.all(10),
-                      backgroundColor: Colors.orange[800],
-                    ),
-                    child: Icon(Icons.logout, color: Colors.white),
+                ),
+              Positioned(
+                top: 30,
+                right: 5,
+                child: Container(
+                  child: Container(
+                    color: Colors.black,
+                    child: IconButton(
+                      icon: Icon(
+                        Icons.logout,
+                        color: Button.OPERATION,),
+                      onPressed: _logout,
+                    )
                   ),
-                ],
+                )
+
+
+
               ),
-            ),
+                
           ],
         ),
       ),
