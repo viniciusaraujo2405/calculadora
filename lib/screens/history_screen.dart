@@ -7,19 +7,8 @@ class HistoryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     User? user = FirebaseAuth.instance.currentUser;
 
-    if (user == null) {
-      return Container(
-        padding: EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: Colors.black87,
-          borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
-        ),
-        height: 500,
-        child: Center(
-          child: Text("Usuário não autenticado", style: TextStyle(color: Colors.white70)),
-        ),
-      );
-    }
+    
+    
 
     return Container(
       padding: EdgeInsets.all(16),
@@ -50,7 +39,7 @@ class HistoryScreen extends StatelessWidget {
             child: StreamBuilder<QuerySnapshot>(
               stream: FirebaseFirestore.instance
                   .collection('operations')
-                  .where('userId', isEqualTo: user.uid)
+                  .where('userId', isEqualTo: user!.uid)
                   .orderBy('timestamp', descending: true)
                   .snapshots(),
               builder: (context, snapshot) {
