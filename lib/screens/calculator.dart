@@ -50,9 +50,16 @@ class _CalculatorState extends State<Calculator> {
                         Icons.list,
                         color: Button.OPERATION,),
                       onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => HistoryScreen()),
-                      );
+                      showModalBottomSheet(
+                        context: context,
+                        backgroundColor: Colors.black,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+                        ),
+                        builder: (context) => HistoryScreen(),
+                        
+                        
+                        );
                     },
                     )
                   ),
@@ -60,8 +67,7 @@ class _CalculatorState extends State<Calculator> {
               Positioned(
                 top: 30,
                 right: 5,
-                child: Container(
-                  child: Container(
+                child:  Container(
                     color: Colors.black,
                     child: IconButton(
                       icon: Icon(
@@ -70,7 +76,7 @@ class _CalculatorState extends State<Calculator> {
                       onPressed: _logout,
                     )
                   ),
-                )
+                
 
 
 

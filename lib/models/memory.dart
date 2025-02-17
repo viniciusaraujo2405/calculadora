@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Memory {
   static const operations = const ['%', '/', 'x', '-', '+', '=', '^'];
@@ -10,6 +11,7 @@ class Memory {
   String _value = '0';
   bool _wipeValue = false;
   String _lastCommand = '';
+ 
   
 
 
@@ -96,12 +98,17 @@ class Memory {
   }
 
   void _saveToFirestore(double firstOperand, double secondOperand, String operation, double result) {
-    FirebaseFirestore.instance.collection('operations').add({
-      'expression': '$firstOperand $_operation $secondOperand',
-      'result': result,
-      'timestamp': FieldValue.serverTimestamp(),
-    });
-  }
+     final user = FirebaseAuth.instance.currentUser;
+
+     if(user != null) {
+       FirebaseFirestore.instance.collection('operations').add({
+          'expression': '$firstOperand $_operation $secondOperand',
+          'result': result,
+          'timestamp': FieldValue.serverTimestamp(),
+          'userId': user.uid
+        });
+        }
+      }
   String get value {
     return _value;
   }	
