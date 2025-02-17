@@ -1,7 +1,9 @@
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Memory {
-  static const operations = const ['%', '/', 'x', '-', '+', '='];
+  static const operations = const ['%', '/', 'x', '-', '+', '=', '^'];	
   final _buffer = [0.0, 0.0];
   int _bufferIndex = 0;
   String? _operation ;
@@ -54,15 +56,8 @@ class Memory {
       _operation = isEqualSign ? null : newOperation; 
       _bufferIndex = isEqualSign ? 0 : 1;
       _wipeValue = true;
-
-      
     }
 
-    
-
-    
-
-    
   }
 
   _addDigit(String digit) {
@@ -95,6 +90,7 @@ class Memory {
       case 'x': return _buffer[0] * _buffer[1];
       case '-': return _buffer[0] - _buffer[1];
       case '+': return _buffer[0] + _buffer[1];
+      case '^':  return pow(_buffer[0], _buffer[1]);
       default: return _buffer[0];
     }
   }
