@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Memory {
   static const operations = const ['%', '/', 'x', '-', '+', '='];
   final _buffer = [0.0, 0.0];
@@ -6,6 +8,7 @@ class Memory {
   String _value = '0';
   bool _wipeValue = false;
   String _lastCommand = '';
+  
 
 
   void applyCommand(String command) {
@@ -36,17 +39,28 @@ class Memory {
         _wipeValue = true;
                           }
       } else {
+      final firstOperand = _buffer[0];
+      final secondOperand = _buffer[1];
+      final operation = _operation;
       _buffer[0] = _calculate();
       _buffer[1] = 0.0;
       _value = _buffer[0].toString();
       _value = _value.endsWith('.0') ? _value.split('.')[0] : _value;
+
+      if (isEqualSign && operation != null) {
+      _saveToFirestore(firstOperand, secondOperand, operation, _buffer[0]);
+    }
       
       _operation = isEqualSign ? null : newOperation; 
       _bufferIndex = isEqualSign ? 0 : 1;
+      _wipeValue = true;
+
       
     }
 
-    _wipeValue = true;
+    
+
+    
 
     
   }
@@ -83,6 +97,14 @@ class Memory {
       case '+': return _buffer[0] + _buffer[1];
       default: return _buffer[0];
     }
+  }
+
+  void _saveToFirestore(double firstOperand, double secondOperand, String operation, double result) {
+    FirebaseFirestore.instance.collection('operations').add({
+      'expression': '$firstOperand $_operation $secondOperand',
+      'result': result,
+      'timestamp': FieldValue.serverTimestamp(),
+    });
   }
   String get value {
     return _value;
