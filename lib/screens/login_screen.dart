@@ -17,26 +17,93 @@ class _LoginScreenState extends State<LoginScreen> {
         email: _emailController.text.trim(),
         password: _passwordController.text.trim(),
       );
-      Navigator.pushReplacementNamed(context, '/calculator'); 
+      Navigator.pushReplacementNamed(context, '/calculator');
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Erro ao fazer login')));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Email e/ou senha inválidos.'),
+          backgroundColor: Colors.deepOrange,
+        ),
+      );
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Login")),
-      body: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            TextField(controller: _emailController, decoration: InputDecoration(labelText: "Email")),
-            TextField(controller: _passwordController, decoration: InputDecoration(labelText: "Senha"), obscureText: true),
-            SizedBox(height: 20),
-            ElevatedButton(onPressed: _login, child: Text("Entrar")),
-            TextButton(onPressed: () => Navigator.pushNamed(context, '/register'), child: Text("Criar conta"))
-          ],
+      backgroundColor: Colors.black,
+      body: Center(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 30),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                "Login",
+                style: TextStyle(
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+              SizedBox(height: 30),
+              TextField(
+                controller: _emailController,
+                style: TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                  labelText: "Email",
+                  labelStyle: TextStyle(color: Colors.white70),
+                  filled: true,
+                  fillColor: Colors.grey[900],
+                  enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white54),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                  focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.deepOrange, width: 2),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+
+                  
+
+                ),
+              ),
+              SizedBox(height: 15),
+              TextField(
+                controller: _passwordController,
+                obscureText: true,
+                style: TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                  labelText: "Senha",
+                  labelStyle: TextStyle(color: Colors.white70),
+                  filled: true,
+                  fillColor: Colors.grey[900],
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white54),
+                      borderRadius: BorderRadius.circular(10),
+                      ),
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.deepOrange, width: 2),
+                      borderRadius: BorderRadius.circular(10),
+                      ),
+                ),
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: _login,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.deepOrange,
+                  padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                ),
+                child: Text("Entrar", style: TextStyle(fontSize: 18, color: Colors.white)),
+              ),
+              TextButton(
+                onPressed: () => Navigator.pushNamed(context, '/register'),
+                child: Text("Criar conta", style: TextStyle(color: Colors.deepOrange,fontSize: 16)),
+              ),
+            ],
+          ),
         ),
       ),
     );
