@@ -1,5 +1,6 @@
 import 'package:calculadora/components/display.dart';
 import 'package:calculadora/components/keyboard.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../models/memory.dart';
@@ -21,24 +22,42 @@ class _CalculatorState extends State<Calculator> {
     });
     
   }
+  void _logout() async {
+    await FirebaseAuth.instance.signOut();
+    Navigator.of(context).pushReplacementNamed('/'); 
+  }
 
   @override 
   
-  Widget build(BuildContext context){
+   @override
+  Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        
-        body: Column(
+        body: Stack(
           children: [
-            Display(memory.value),
-            Keyboard(_onPressed),
-          ]
-          
-        
+            Column(
+              children: [
+                Display(memory.value),
+                Keyboard(_onPressed),
+              ],
+            ),
+            Positioned(
+              top: 30, 
+              right: 5, 
+              child: ElevatedButton(
+                onPressed: _logout,
+                style: ElevatedButton.styleFrom(
+                  shape: CircleBorder(), 
+                  padding: EdgeInsets.all(10),
+                  backgroundColor: Colors.orange[800], 
+                ),
+                child: Icon(Icons.logout, color: Colors.white), 
+              ),
+            ),
+          ],
+        ),
       ),
-      ),
-        debugShowCheckedModeBanner: false,
-
+      debugShowCheckedModeBanner: false,
     );
   }
 }
