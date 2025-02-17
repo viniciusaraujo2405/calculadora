@@ -1,5 +1,5 @@
-import 'package:calculadora/screens/display.dart';
-import 'package:calculadora/screens/keyboard.dart';
+import 'package:calculadora/components/display.dart';
+import 'package:calculadora/components/keyboard.dart';
 import 'package:flutter/material.dart';
 
 import '../models/memory.dart';
